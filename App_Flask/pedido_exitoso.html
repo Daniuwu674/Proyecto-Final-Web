@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="5;url={{ url_for('index') }}">
+    <title>Pedido Exitoso</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .mensaje-exito {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: inline-block;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        .btn-principal {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 3px;
+            margin-top: 1rem;
+        }
+
+        .btn-principal:hover {
+            background-color: #45a049;
+        }
+        @media (max-width: 600px){
+            body{
+                padding: 1rem;
+            }
+            .mensaje-exito{
+                padding: 1.5rem;
+                margin-top: 20px;
+            }
+            h1{
+                font-size: 1.5rem;
+            }
+            .btn-principal {
+                width: 100%;
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mensaje-exito">
+        <h1>¡Pedido procesado con éxito!</h1>
+        <p>Volviendo a la página principal :D.</p>
+        <a href="{{ url_for('index') }}" class="btn-principal">Volver a la tienda</a>
+    </div>
+</body>
+</html>

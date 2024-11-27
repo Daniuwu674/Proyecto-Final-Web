@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5deb3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        table thead {
+            background-color: #FF914D;
+            color: white;
+        }
+        table th, table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+        }
+        button {
+            background-color: #FF914D;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e07b3c;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+            background-color: #2d9131;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        a:hover {
+            background-color: #217026;
+        }
+        form {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carrito de Compras</h1>
+
+    {% if carrito and carrito | length > 0 %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in carrito %}
+                <tr>
+                    <td>{{ item.nombre }}</td>
+                    <td>S/.{{ item.precio }}</td>
+                    <td>{{ item.cantidad }}</td>
+                    <td>S/.{{ item.precio * item.cantidad }}</td>
+                    <td>
+                        <form action="{{ url_for('eliminar_del_carrito', producto_id=item.id) }}" method="POST">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p><strong>Total:</strong> S/.{{ total }}</p>
+        <form action="{{ url_for('procesar_pedido') }}" method="POST">
+            <button type="submit">Finalizar Pedido</button>
+        </form>
+    {% else %}
+        <p>Tu carrito está vacío.</p>
+    {% endif %}
+
+    <a href="{{ url_for('index') }}">Seguir comprando</a>
+</body>
+</html>

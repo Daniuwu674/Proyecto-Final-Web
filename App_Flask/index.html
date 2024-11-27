@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda</title>
+    <style>
+        .btn-categorias{
+            background-color: #FF914D;
+            color:white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+        .dropdown-categorias{
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 20px;
+            background-color: #f9f9f9;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 99;
+        }
+        .dropdown-categorias a{
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-categorias a:hover{
+            background-color: #ddd;
+        }
+        .categoria-seleccionada{
+            background-color: #FF914D;
+            color: white;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5deb3;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+        .search-bar{
+            margin-top: 10px;
+        }
+        .search-bar input[type="text"]{
+            padding: 10px;
+            font-size: 16px;
+            width: 80%;
+            border: none;
+            border-radius: 3px;
+        }
+        .search-bar button{
+            padding:10px;
+            font-size: 16px;
+            background-color: #FF914D;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        main {
+            padding: 2rem;
+        }
+        .botones-navegacion {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-inicio {
+            background-color: #FF914D;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn-inicio:hover {
+            background-color: #FF7F3F;
+        }
+
+        .btn-categorias{
+            background-color: #FF914D;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+        .productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .producto {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .producto img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .producto h2 {
+            margin-top: 0.5rem;
+        }
+        .precio {
+            font-weight: bold;
+            color: #e44d26;
+        }
+        .btn-pedido {
+            display: inline-block;
+            background-color: #2d9131;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 3px;
+            margin-top: 1rem;
+        }
+        .btn-ver-carrito{
+            background-color: #FF914D;
+            color: white;
+            padding: 7px 15px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 150px; 
+            text-decoration: none;
+            border-radius: 5px;
+            z-index: 50;
+        }
+        .btn-ver-carrito:hover{
+            background-color: #FF914D;
+        }
+        .btn-carrito{
+            display: inline-block;
+            background-color: #2d9131;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 3px;
+            margin-top: 1rem;
+            margin-left: 0.5rem;
+        }
+        .btn-carrito:hover{
+            background-color: #e07b3c;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        @media (max-width: 600px){
+            .search-bar input[type="text"]{
+                width: 100%;
+                font-size: 14px;
+            }
+            .search-bar button {
+                width: 100%;
+                font-size: 14px;
+                margin-top: 5px;
+            }
+            .productos{
+                background-color: #fff;
+                border-radius: 5px;
+                padding: 1rem;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .producto:hover{
+                transform: translateY(-10px); 
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+            }
+            .btn-categorias, .btn-inicio{
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+            .btn-pedido{
+                padding: 0.4rem 0.8rem;
+                font-size: 14px;
+            }
+            main{
+                padding: 1rem;
+            }
+            header h1, footer p{
+                font-size: 18px;
+            }
+            .dropdown-categorias {
+                width: 100%;
+                left: 0;
+                right: 0;
+                top: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>!Bienvenidos a Mi Tienda!</h1>
+        
+        <div class="search-bar">
+            <form action="/buscar" method="GET">
+                <input type="text" name="q" placeholder="Buscar productos...">
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+        <div class="botones-navegacion">
+            <a href="/" class="btn-inicio">Inicio</a>
+            <a href="/ofertas" class="btn-inicio">Ofertas del Día</a>
+            <a href="/registro" class="btn-inicio"> Registrar usuario</a>
+        </div>
+
+        <button class="btn-categorias" id="btnCategorias">Categorías</button>
+        <a href="/ver_carrito" class="btn-ver-carrito">Ver Carrito</a>
+        <div class="dropdown-categorias" id="menuCategorias">
+            {% for categoria in categorias %}
+                <a href="/categoria/{{ categoria.id }}" class="{% if categoria.id ==categoria_seleccionada %}categoria-seleccionada{% endif %}">{{ categoria.nombre}}</a>
+            {% endfor %}    
+        </div>
+    </header>
+
+    <main>
+        <div class="productos">
+            {% for producto in productos %}
+            <div class="producto">
+                <img src="{{ url_for('static', filename='images/' + producto['imagen']) }}" alt="{{ producto['nombre'] }}">
+                <h2>{{ producto['nombre'] }}</h2>
+                <p>{{ producto['descripcion'] }}</p>
+                <p class="precio">Precio: S/. {{ producto['precio'] }}</p>
+                <a href="{{ url_for('hacer_pedido', producto_id=producto['id']) }}" class="btn-pedido">Hacer Pedido</a>
+                <a href="{{ url_for('agregar_al_carrito', producto_id=producto['id']) }}" class="btn-carrito">Agregar al Carrito</a>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <script>
+        const btnCategorias = document.getElementById('btnCategorias');
+        const menuCategorias = document.getElementById('menuCategorias');
+
+        btnCategorias.addEventListener('click', function(){
+            if(menuCategorias.style.display === 'none' || menuCategorias.style.display === '') {
+                menuCategorias.style.display= 'block';
+            } else {
+                menuCategorias.style.display = 'none';
+            }
+        });
+
+        window.onclick =function(event){
+            if(!event.target.matches('#btnCategorias')){
+                if (menuCategorias.style.display === 'block'){
+                    menuCategorias.style.display = 'none';
+                }
+            }
+        };
+    </script>
+
+    <footer>
+        <p>&copy; 2023 Mi Tienda Virtual. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
